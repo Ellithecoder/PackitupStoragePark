@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PackitupStoragePark.Data;
 
@@ -11,13 +12,14 @@ using PackitupStoragePark.Data;
 namespace PackitupStoragePark.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231213201406_StorageUnitAndUserCreated")]
+    partial class StorageUnitAndUserCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.23")
+                .HasAnnotation("ProductVersion", "6.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -167,13 +169,13 @@ namespace PackitupStoragePark.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UnitId"), 1L, 1);
 
-                    b.Property<float?>("UniPrince")
+                    b.Property<float>("UniPrince")
                         .HasColumnType("real");
 
-                    b.Property<int?>("UnitNumber")
+                    b.Property<int>("UnitNumber")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UnitSize")
+                    b.Property<int>("UnitSize")
                         .HasColumnType("int");
 
                     b.HasKey("UnitId");
@@ -190,6 +192,7 @@ namespace PackitupStoragePark.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Address")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ConcurrencyStamp")
